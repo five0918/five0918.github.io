@@ -275,6 +275,187 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/24/正则表达式之匹配一组字符/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="发条毛虫">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="发条毛虫">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/24/正则表达式之匹配一组字符/" itemprop="url">正则表达式之匹配一组字符</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-24T21:15:30+08:00">
+                2017-10-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/正则表达式/" itemprop="url" rel="index">
+                    <span itemprop="name">正则表达式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="匹配一组字符"><a href="#匹配一组字符" class="headerlink" title="匹配一组字符"></a>匹配一组字符</h1><p>标签（空格分隔）：正则表达式</p>
+<hr>
+<h2 id="匹配多个字符中的某一个"><a href="#匹配多个字符中的某一个" class="headerlink" title="匹配多个字符中的某一个"></a>匹配多个字符中的某一个</h2><p>在正则表达式里，可以使用元字符[和]来定义一个集合。在使用[和]定义的字符集合里，这两个元字符之间的所有字符都是该集合的组成部分，字符集合的匹配结果是能够与该集合里的<strong>任意一个</strong>成员相匹配的文本。</p>
+<p>文本：</p>
+<blockquote>
+<p>sales1.xls<br><br>orders3.xls<br><br>sales2.xls<br><br>sales3.xls<br><br>apac1.xls<br><br>europe2.xls<br><br>na1.xls<br><br>na2.xls<br><br>sa1.xls<br><br>sa2.xls<br></p>
+</blockquote>
+<p>正则表达式：</p>
+<p><code>cat test.txt | grep &#39;[ns]a.\.xls&#39;</code></p>
+<p>结果：</p>
+<blockquote>
+<p>na1.xls<br><br>na2.xls<br><br>sa1.xls<br><br>sa2.xls<br></p>
+</blockquote>
+<h2 id="利用字符集合区间"><a href="#利用字符集合区间" class="headerlink" title="利用字符集合区间"></a>利用字符集合区间</h2><p>文本：</p>
+<blockquote>
+<p>sales1.xls<br><br>orders3.xls<br><br>sales2.xls<br><br>sales3.xls<br><br>apac1.xls<br><br>europe2.xls<br><br>sam.xls<br><br>na1.xls<br><br>na2.xls<br><br>sa1.xls<br><br>sa2.xls<br></p>
+</blockquote>
+<p>正则表达式：<br><code>cat test.txt | grep &#39;[ns]a[0-9]\.xls&#39;</code></p>
+<p>结果：</p>
+<blockquote>
+<p>na1.xls<br><br>na2.xls<br><br>sa1.xls<br><br>sa2.xls<br></p>
+</blockquote>
+<p>在使用正则表达式时，会频繁地使用一些字符区间（0~9、A~Z等）。为了简化字符区间定义，正则表达式提供了一个特殊的元字符 - 来使用。<br>字符区间不仅限于数字，以下这些也是合法的字符区间。</p>
+<ul>
+<li>A-Z，匹配从A到Z的所有大写字母。</li>
+<li>a-z，匹配从a到z的所有小写字母。</li>
+<li>A-F，匹配从A到F的所有大写字母。</li>
+<li>A-z，匹配从ASCII字符A到z的所有字母。该模式一般不常用，因为还包含[和^等在ASCII字符表里排列在Z和a之间的字符。</li>
+</ul>
+<p>注意:</p>
+<p>-（连字符）是一个特殊的元字符，作为元字符只能用在[和]之间。在字符集合以外的地方，-只是一个普通字符，只能与-本身相匹配。因此在正则表达式里不需要被转义。</p>
+<p>在同一个字符集合里可以匹配多个字符区间。比如说下面的模板可以匹配任何一个字母（无论大小写）或数字。<br>[A-Za-z0-9]</p>
+<h2 id="取非匹配"><a href="#取非匹配" class="headerlink" title="取非匹配"></a>取非匹配</h2><p>取非匹配，是指除了字符集合里的字符外，其他字符都可以匹配。使用元字符^来表明你想对一个字符集合进行取非匹配。</p>
+<p>文本：</p>
+<blockquote>
+<p>sales1.xls<br><br>orders3.xls<br><br>sales2.xls<br><br>sales3.xls<br><br>apac1.xls<br><br>europe2.xls<br><br>sam.xls<br><br>na1.xls<br><br>na2.xls<br><br>sa1.xls<br><br>sa2.xls<br></p>
+</blockquote>
+<p>正则表达式：<br><code>cat test.txt | grep &#39;[ns]a[^0-9]\.xls&#39;</code></p>
+<p>结果：<br>sam.xls</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>元字符[和]用来定义一个字符集合。其含义是必须匹配集合中的字符之一。定义一个字符集合的方法有两种：一是把所有的字符全都列举出来；二是利用元字符-以字符区间的方式给出。字符集合可以用元字符^来求非。这将把给定的字符集合强行排除在匹配操作以外。除了该字符集合里的字符，其他字符都可以被匹配。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/23/正则表达式之匹配单个字符/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -294,7 +475,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/23/正则表达式之匹配单个字符/" itemprop="url">正则表达式必知必会之匹配单个字符</a></h1>
+                <a class="post-title-link" href="/2017/10/23/正则表达式之匹配单个字符/" itemprop="url">正则表达式之匹配单个字符</a></h1>
         
 
         <div class="post-meta">
@@ -381,7 +562,7 @@
 </ul>
 <h2 id="如何使用正则表达式"><a href="#如何使用正则表达式" class="headerlink" title="如何使用正则表达式"></a>如何使用正则表达式</h2><h3 id="用正则表达式进行搜索"><a href="#用正则表达式进行搜索" class="headerlink" title="用正则表达式进行搜索"></a>用正则表达式进行搜索</h3><p>文件searchtest.txt<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">car</div><div class="line">Car</div><div class="line">CAR</div><div class="line">scar</div><div class="line">carry</div><div class="line">incarcerate</div></pre></td></tr></table></figure></p>
 <p>正则表达式</p>
-<p><code>cat test.txt | grep &quot;\b[Cc][Aa][Rr]\b&quot;</code></p>
+<p><code>cat test.txt | grep &#39;\b[Cc][Aa][Rr]\b&#39;</code></p>
 <p>结果</p>
 <p><font color="red">car</font><br></p>
 <p><font color="red">Car</font><br></p>
@@ -389,12 +570,12 @@
 <h3 id="正则表达式进行替换"><a href="#正则表达式进行替换" class="headerlink" title="正则表达式进行替换"></a>正则表达式进行替换</h3><h2 id="正则表达式是什么"><a href="#正则表达式是什么" class="headerlink" title="正则表达式是什么"></a>正则表达式是什么</h2><p>正则表达式是用来匹配和处理文本的字符串，正则表达式是用正则表达式语言创建的。正则表达式内置于其他语言中，几乎所有的语言或工具都支持正则表达式。</p>
 <h1 id="匹配单个字符"><a href="#匹配单个字符" class="headerlink" title="匹配单个字符"></a>匹配单个字符</h1><p>文本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Hello, my name is Ben.Please visit</div><div class="line">my website at http://www.forta.com</div></pre></td></tr></table></figure></p>
 <p>正则表达式</p>
-<p><code>cat text.txt | grep &quot;my&quot;</code></p>
+<p><code>cat text.txt | grep &#39;my&#39;</code></p>
 <p>匹配结果</p>
 <p>Hello,  <font color="red">my</font> name is Ben.Please visit<br></p>
 <p><font color="red">my</font> website at <a href="http://www.forta.com" target="_blank" rel="external">http://www.forta.com</a></p>
 <h2 id="匹配纯文本"><a href="#匹配纯文本" class="headerlink" title="匹配纯文本"></a>匹配纯文本</h2><p>正则表达式</p>
-<p><code>cat text.txt | grep &quot;Ben&quot;</code></p>
+<p><code>cat text.txt | grep &#39;Ben&#39;</code></p>
 <p>匹配结果</p>
 <p>Hello,  my name is <font color="red">Ben</font>.Please visit<br><br>my website at <a href="http://www.forta.com" target="_blank" rel="external">http://www.forta.com</a></p>
 <h3 id="多个匹配结果"><a href="#多个匹配结果" class="headerlink" title="多个匹配结果"></a>多个匹配结果</h3><h3 id="字母大小写"><a href="#字母大小写" class="headerlink" title="字母大小写"></a>字母大小写</h3><p>正则表达式是区分字母大小写的，所以Ben不匹配ben。</p>
@@ -402,7 +583,7 @@
 <p>文本</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">sales.xls</div><div class="line">sales1.xls</div><div class="line">orders3.xls</div><div class="line">sales2.xls</div><div class="line">sales3.xls</div><div class="line">apac1.xls</div><div class="line">na1.xls</div><div class="line">na2.xls</div></pre></td></tr></table></figure>
 <p>正则表达式</p>
-<p><code>cat test.txt | grep &quot;sales.&quot;</code></p>
+<p><code>cat test.txt | grep &#39;sales.&#39;</code></p>
 <p>结果</p>
 <p><font color="red">sales.</font>xls<br></p>
 <p><font color="red">sales1</font>.xls<br><br>orders3.xls<br></p>
@@ -770,7 +951,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
