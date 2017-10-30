@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="正则表达式," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="正则表达式必知必会之使用元字符标签（空格分隔）： 正则表达式 对特殊字符进行转义因为元字符在正则表达式里有着特殊的含义，所以这些字符无法代表它们本身。在元字符前面加一个反斜杠就可以对它进行转义：转义序列.将匹配.本身，转义序列[将匹配[本身。 文本： 12345var myArray = new Array();...if (myArray[0] == 0) &amp;#123;...&amp;#125; 正则表">
+<meta name="keywords" content="正则表达式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正则表达式之使用元字符">
+<meta property="og:url" content="http://yoursite.com/2017/10/30/正则表达式之使用元字符/index.html">
+<meta property="og:site_name" content="发条毛虫">
+<meta property="og:description" content="正则表达式必知必会之使用元字符标签（空格分隔）： 正则表达式 对特殊字符进行转义因为元字符在正则表达式里有着特殊的含义，所以这些字符无法代表它们本身。在元字符前面加一个反斜杠就可以对它进行转义：转义序列.将匹配.本身，转义序列[将匹配[本身。 文本： 12345var myArray = new Array();...if (myArray[0] == 0) &amp;#123;...&amp;#125; 正则表">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-10-30T15:12:32.483Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="正则表达式之使用元字符">
+<meta name="twitter:description" content="正则表达式必知必会之使用元字符标签（空格分隔）： 正则表达式 对特殊字符进行转义因为元字符在正则表达式里有着特殊的含义，所以这些字符无法代表它们本身。在元字符前面加一个反斜杠就可以对它进行转义：转义序列.将匹配.本身，转义序列[将匹配[本身。 文本： 12345var myArray = new Array();...if (myArray[0] == 0) &amp;#123;...&amp;#125; 正则表">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/30/正则表达式之使用元字符/"/>
+
+
+
+
+
+  <title>正则表达式之使用元字符 | 发条毛虫</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">发条毛虫</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">纸上得来终觉浅，绝知此事须躬行</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/30/正则表达式之使用元字符/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="发条毛虫">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="发条毛虫">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">正则表达式之使用元字符</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-30T23:05:15+08:00">
+                2017-10-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/正则表达式/" itemprop="url" rel="index">
+                    <span itemprop="name">正则表达式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="正则表达式必知必会之使用元字符"><a href="#正则表达式必知必会之使用元字符" class="headerlink" title="正则表达式必知必会之使用元字符"></a>正则表达式必知必会之使用元字符</h1><p>标签（空格分隔）： 正则表达式</p>
+<h2 id="对特殊字符进行转义"><a href="#对特殊字符进行转义" class="headerlink" title="对特殊字符进行转义"></a>对特殊字符进行转义</h2><p>因为元字符在正则表达式里有着特殊的含义，所以这些字符无法代表它们本身。在元字符前面加一个反斜杠就可以对它进行转义：转义序列.将匹配.本身，转义序列[将匹配[本身。</p>
+<p>文本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var myArray = new Array();</div><div class="line">...</div><div class="line">if (myArray[0] == 0) &#123;</div><div class="line">...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>正则表达式：</p>
+<p><code>cat test.txt | egrep &#39;myArray\[0\]&#39;</code></p>
+<p>结果：</p>
+<p><code>if (myArray[0] == 0) {</code></p>
+<blockquote>
+<p>注意:<br>任何一个元字符都可以通过加一个反斜杠()作为前缀进行转义。配对的元字符（比如[]）不用作元字符时必须被转义，否则正则表达式分析器很可能会抛出一个异常。</p>
+</blockquote>
+<p>对元字符进行转义需要用到\字符，这意味着\也是一个元字符，对其进行转义时需要使用\。</p>
+<p>文本：</p>
+<blockquote>
+<p>\home\ben\sales</p>
+</blockquote>
+<p>正则表达式：</p>
+<p><code>cat test.txt | grep &#39;\\&#39;</code></p>
+<p>结果：</p>
+<p>\ \ \</p>
+<h2 id="匹配空白字符"><a href="#匹配空白字符" class="headerlink" title="匹配空白字符"></a>匹配空白字符</h2><p>元字符大致分为两种：一种是用来匹配文本的（比如 . ），另一种是正则表达式的语法所要求的（比如[和]）。</p>
+<table>
+<thead>
+<tr>
+<th>元字符</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[\b]</td>
+<td style="text-align:center">回退（并删除）一个字符（Backspace键）</td>
+</tr>
+<tr>
+<td>\f</td>
+<td style="text-align:center">换页符</td>
+</tr>
+<tr>
+<td>\n</td>
+<td style="text-align:center">换行符</td>
+</tr>
+<tr>
+<td>\r</td>
+<td style="text-align:center">回车符</td>
+</tr>
+<tr>
+<td>\t</td>
+<td style="text-align:center">制表符（Tab键）</td>
+</tr>
+<tr>
+<td>\v</td>
+<td style="text-align:center">垂直制表符</td>
+</tr>
+</tbody>
+</table>
+<h2 id="匹配特定的字符类别"><a href="#匹配特定的字符类别" class="headerlink" title="匹配特定的字符类别"></a>匹配特定的字符类别</h2><h3 id="匹配数字（与非字符）"><a href="#匹配数字（与非字符）" class="headerlink" title="匹配数字（与非字符）"></a>匹配数字（与非字符）</h3><table>
+<thead>
+<tr>
+<th>元字符</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\d</td>
+<td style="text-align:center">任何一个数字字符（等价于[0-9]）</td>
+</tr>
+<tr>
+<td>\D</td>
+<td style="text-align:center">任何一个非数字字符（等价于[^0-9])</td>
+</tr>
+</tbody>
+</table>
+<p>文本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var myArray = new Array();</div><div class="line">...</div><div class="line">if (myArray[0] == 0) &#123;</div><div class="line">...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>正则表达式：</p>
+<p><code>cat test.txt | grep -P &#39;myArray\[\d\]&#39;</code></p>
+<p>结果：</p>
+<p>myArray[0]</p>
+<blockquote>
+<p>注意：<br>正则表达式的语法是区分字母大小写的。\d匹配数字，\D与\d的含义刚好相反。</p>
+</blockquote>
+<h3 id="匹配字母和数字（与非字母和数字）"><a href="#匹配字母和数字（与非字母和数字）" class="headerlink" title="匹配字母和数字（与非字母和数字）"></a>匹配字母和数字（与非字母和数字）</h3><p>字母和数字，A到Z（不分大小写）、数字0到9，再加上下划线(_)，是另一种常用的字符集合。这些字符常见于各种名字中，如（文件名、目录名、变量名、数据库对象）。</p>
+<table>
+<thead>
+<tr>
+<th>元字符</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\w</td>
+<td style="text-align:center">任何一个字母数字字符（大小写均可）或下划线字符（等价于[a-zA-Z0-9_]）</td>
+</tr>
+<tr>
+<td>\W</td>
+<td style="text-align:center">任何一个非字母数字或非下划线(等价于)[^a-zA-Z0-9_]</td>
+</tr>
+</tbody>
+</table>
+<p>文本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">11213</div><div class="line">A1C2E3</div><div class="line">48075</div><div class="line">43237</div><div class="line">M1B4F2</div><div class="line">90046</div><div class="line">H1H2H2</div></pre></td></tr></table></figure>
+<p>正则表达式：</p>
+<p><code>cat test.txt | grep -P &#39;\w\d\w\d\w\d&#39;</code></p>
+<p>结果：</p>
+<p>A1C2E3<br><br>M1B4F2<br><br>H1H2H2<br></p>
+<h3 id="匹配空白字符-1"><a href="#匹配空白字符-1" class="headerlink" title="匹配空白字符"></a>匹配空白字符</h3><table>
+<thead>
+<tr>
+<th>元字符</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\s</td>
+<td style="text-align:center">任何一个空白字符（等价于[\f\n\r\t\v])</td>
+</tr>
+<tr>
+<td>\S</td>
+<td style="text-align:center">任何一个非空白字符（等价于[^\f\n\r\t\v]）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>注意：<br>用来匹配退格字符的[\b]元字符是一个特例：它不在类元字符\s的覆盖范围内，当然也就没有排除在类元字符\S的覆盖范围外。</p>
+</blockquote>
+<h3 id="匹配十六进制或八进制数值"><a href="#匹配十六进制或八进制数值" class="headerlink" title="匹配十六进制或八进制数值"></a>匹配十六进制或八进制数值</h3><ol>
+<li>使用十六进制值<br>在正则表达式里，十六进制（逢16进1）数值要用前缀\x来给出。比如说，\x0A对应于ASCII字符10（换行符），其效果等价于\n。</li>
+<li>使用八进制值<br>在正则表达式里，八进制（逢8进1）数值要用前缀\0来给出，数值本身可以是两位或三位数字。比如说，\011对应于ASCII字符9（制表符），其效果等价于\t。</li>
+</ol>
+<h2 id="使用POSIX字符类"><a href="#使用POSIX字符类" class="headerlink" title="使用POSIX字符类"></a>使用POSIX字符类</h2><p>POSIX字符类是许多（不是所有）正则表达式实现都支持的一种简写形式。</p>
+<table>
+<thead>
+<tr>
+<th>字符类</th>
+<th style="text-align:center">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[:alnum:]</td>
+<td style="text-align:center">任何一个字母或数字（等价于[a-zA-Z0-9])</td>
+</tr>
+<tr>
+<td>[:alpha:]</td>
+<td style="text-align:center">任何一个字母（等价于[a-zA-z]）</td>
+</tr>
+<tr>
+<td>[:blank:]</td>
+<td style="text-align:center">空格或制表符[\t ]</td>
+</tr>
+<tr>
+<td>[:cntrl:]</td>
+<td style="text-align:center">ASCII控制字符（ASCII0到31），再加上ASCII127</td>
+</tr>
+<tr>
+<td>[:digit:]</td>
+<td style="text-align:center">任何一个数字（等价于[0-9]）</td>
+</tr>
+<tr>
+<td>[:graph:]</td>
+<td style="text-align:center">和[:print:]一样，但不包括空格</td>
+</tr>
+<tr>
+<td>[:lower:]</td>
+<td style="text-align:center">任何一个小写字母（等价于[a-z]）</td>
+</tr>
+<tr>
+<td>[:print:]</td>
+<td style="text-align:center">任何一个打印字符</td>
+</tr>
+<tr>
+<td>[:punct:]</td>
+<td style="text-align:center">既不属于[:alnum:]也不属于[:cntrl:]的任何一个字符</td>
+</tr>
+<tr>
+<td>[:space:]</td>
+<td style="text-align:center">任何一个空白字符，包括空格（等价于[^\f\n\r\t\v]）</td>
+</tr>
+<tr>
+<td>[:upper:]</td>
+<td style="text-align:center">任何一个大写字母(等价于[A-Z])</td>
+</tr>
+<tr>
+<td>[:xdigit:]</td>
+<td style="text-align:center">任何一个十六进制数字（等价于[a-fA-F0-9]）</td>
+</tr>
+</tbody>
+</table>
+<p>文本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;BODY BGCOLOR=&quot;#336633&quot; TEXT=&quot;#FFFFFF&quot;</div><div class="line">      MARGINWIDTH=&quot;0&quot; MARGINHEIGHT=&quot;0&quot;</div><div class="line">      TOPMARGIN=&quot;0&quot; LEFTMARGIN=&quot;0&quot;&gt;</div></pre></td></tr></table></figure>
+<p>正则表达式：</p>
+<p><code>cat test.txt | grep -P  &#39;#[[:xdigit:]][[:xdigit:]][[:xdigit:]][[:xdigit:]][[:xdigit:]][[:xdigit:]]&#39;</code></p>
+<p>结果：</p>
+<p>#336633 #FFFFFF</p>
+<blockquote>
+<p>注意：这里使用的模式以[[开头、以]]结束（两对方括号）。这是使用POSIX字符类所必须的。POSIX字符类必须括在[:和:]之间，我们使用的POSIX字符类是<a href="不是:xdigit:">:xdigit:</a>。外层的[和]字符用来定义一个字符集合，内层的[和]字符是POSIX字符类本身的组成部分。</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/正则表达式/" rel="tag"># 正则表达式</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/24/正则表达式之匹配一组字符/" rel="next" title="正则表达式之匹配一组字符">
+                <i class="fa fa-chevron-left"></i> 正则表达式之匹配一组字符
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="/images/avatar.png"
+              alt="发条毛虫" />
+          
+            <p class="site-author-name" itemprop="name">发条毛虫</p>
+            <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#正则表达式必知必会之使用元字符"><span class="nav-number">1.</span> <span class="nav-text">正则表达式必知必会之使用元字符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#对特殊字符进行转义"><span class="nav-number">1.1.</span> <span class="nav-text">对特殊字符进行转义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匹配空白字符"><span class="nav-number">1.2.</span> <span class="nav-text">匹配空白字符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匹配特定的字符类别"><span class="nav-number">1.3.</span> <span class="nav-text">匹配特定的字符类别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#匹配数字（与非字符）"><span class="nav-number">1.3.1.</span> <span class="nav-text">匹配数字（与非字符）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匹配字母和数字（与非字母和数字）"><span class="nav-number">1.3.2.</span> <span class="nav-text">匹配字母和数字（与非字母和数字）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匹配空白字符-1"><span class="nav-number">1.3.3.</span> <span class="nav-text">匹配空白字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匹配十六进制或八进制数值"><span class="nav-number">1.3.4.</span> <span class="nav-text">匹配十六进制或八进制数值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用POSIX字符类"><span class="nav-number">1.4.</span> <span class="nav-text">使用POSIX字符类</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">发条毛虫</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.2</div>
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
